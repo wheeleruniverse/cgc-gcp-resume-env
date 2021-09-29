@@ -74,18 +74,6 @@ variable "project" {
   type        = string
 }
 
-variable "repository_branch" {
-  default     = "main"
-  description = "cloud source repository branch"
-  type        = string
-}
-
-variable "repository_name" {
-  default     = "github_wheelers-websites_cloudguruchallenge_21.08-app"
-  description = "cloud source repository name"
-  type        = string
-}
-
 variable "service_account_json" {
   description = "service account json"
   type        = string

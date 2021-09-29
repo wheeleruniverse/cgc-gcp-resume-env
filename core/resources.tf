@@ -32,23 +32,23 @@ resource "google_app_engine_application" "this" {
 
 resource "google_cloudbuild_trigger" "app" {
   description = "cloud build trigger for the ${var.domain} app directory"
-  filename    = "app/cloudbuild.yml"
+  filename    = "cloudbuild.yml"
   name        = "${var.domain}-app"
 
   trigger_template {
-    branch_name = var.repository_branch
-    repo_name   = var.repository_name
+    branch_name = "main"
+    repo_name   = "github_wheelers-websites_cloudguruchallenge_21.08-app"
   }
 }
 
 resource "google_cloudbuild_trigger" "web" {
   description = "cloud build trigger for the ${var.domain} web directory"
-  filename    = "web/cloudbuild.yml"
+  filename    = "cloudbuild.yml"
   name        = "${var.domain}-web"
 
   trigger_template {
-    branch_name = var.repository_branch
-    repo_name   = var.repository_name
+    branch_name = "main"
+    repo_name   = "github_wheelers-websites_cloudguruchallenge_21.08-web"
   }
 }
 
