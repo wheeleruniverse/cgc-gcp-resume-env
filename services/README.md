@@ -3,13 +3,6 @@
 
 ## Resources
 
-### IAM
-
-* Role Mappings `build`
-* Role Mappings `core`
-* Service Account
-* Service Account Key
-
 ### Enable GCP Services
 
 * Cloud Build
@@ -19,6 +12,13 @@
 * Cloud Run
 * Cloud Source Repositories
 * Container Registry
+
+### IAM
+
+* Role Mappings `build`
+* Role Mappings `core`
+* Service Account
+* Service Account Key
 
 ## Outputs
 
