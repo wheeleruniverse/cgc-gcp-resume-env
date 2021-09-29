@@ -1,13 +1,24 @@
 
-# IaC Services
+# Services
 
 ## Resources
 
-* enables the following gcp services for the project:
-  * Cloud DNS
-  * Cloud Domains
-* service account
-* service account key 
+### IAM
+
+* Role Mappings `build`
+* Role Mappings `core`
+* Service Account
+* Service Account Key
+
+### Enable GCP Services
+
+* Cloud Build
+* Cloud Compute
+* Cloud DNS
+* Cloud Domains
+* Cloud Run
+* Cloud Source Repositories
+* Container Registry
 
 ## Outputs
 
