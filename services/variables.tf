@@ -6,6 +6,7 @@ locals {
   build_roles = [
     "iam.serviceAccountUser",
     "run.admin",
+    "compute.loadBalancerAdmin"
   ]
 
   // https://cloud.google.com/iam/docs/understanding-roles
