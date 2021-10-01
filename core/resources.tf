@@ -30,10 +30,21 @@ resource "google_app_engine_application" "this" {
   location_id   = "US-CENTRAL1" == var.location_region ? "us-central" : lower(var.location_region)
 }
 
-resource "google_cloudbuild_trigger" "app" {
-  description = "cloud build trigger for the ${var.domain} app directory"
+resource "google_cloudbuild_trigger" "app-cicd" {
+  description = "cloud build trigger for the app cicd"
   filename    = "cloudbuild.yml"
-  name        = "${var.domain}-app"
+  name        = "${var.domain}-app-cicd"
+
+  trigger_template {
+    branch_name = "candidate"
+    repo_name   = "wheelersadvice/cicd/app"
+  }
+}
+
+resource "google_cloudbuild_trigger" "app-code" {
+  description = "cloud build trigger for the app code"
+  filename    = "cloudbuild.yml"
+  name        = "${var.domain}-app-code"
 
   trigger_template {
     branch_name = "main"
@@ -41,10 +52,10 @@ resource "google_cloudbuild_trigger" "app" {
   }
 }
 
-resource "google_cloudbuild_trigger" "web" {
-  description = "cloud build trigger for the ${var.domain} web directory"
+resource "google_cloudbuild_trigger" "web-code" {
+  description = "cloud build trigger for the web code"
   filename    = "cloudbuild.yml"
-  name        = "${var.domain}-web"
+  name        = "${var.domain}-web-code"
 
   trigger_template {
     branch_name = "main"
@@ -94,6 +105,10 @@ resource "google_cloud_run_service_iam_policy" "this" {
   location    = google_cloud_run_service.this.location
   policy_data = data.google_iam_policy.app.policy_data
   service     = google_cloud_run_service.this.name
+}
+
+resource "google_sourcerepo_repository" "app" {
+  name = "${var.domain}/cicd/app"
 }
 
 resource "google_compute_backend_bucket" "this" {
