@@ -52,6 +52,17 @@ resource "google_cloudbuild_trigger" "app-code" {
   }
 }
 
+resource "google_cloudbuild_trigger" "web-cicd" {
+  description = "cloud build trigger for the web cicd"
+  filename    = "cloudbuild.yml"
+  name        = "${var.domain}-web-cicd"
+
+  trigger_template {
+    branch_name = "candidate"
+    repo_name   = "wheelersadvice/cicd/web"
+  }
+}
+
 resource "google_cloudbuild_trigger" "web-code" {
   description = "cloud build trigger for the web code"
   filename    = "cloudbuild.yml"
@@ -109,6 +120,10 @@ resource "google_cloud_run_service_iam_policy" "this" {
 
 resource "google_sourcerepo_repository" "app" {
   name = "${var.domain}/cicd/app"
+}
+
+resource "google_sourcerepo_repository" "web" {
+  name = "${var.domain}/cicd/web"
 }
 
 resource "google_compute_backend_bucket" "this" {
