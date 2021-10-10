@@ -16,16 +16,20 @@ resource "google_billing_budget" "this" {
     }
   }
   budget_filter {
-    projects = ["projects/${var.project}"]
+    credit_types_treatment = "EXCLUDE_ALL_CREDITS"
+    projects               = ["projects/${var.project}"]
   }
   threshold_rules {
-    threshold_percent = 0.5
+    threshold_percent = 0.25
   }
   threshold_rules {
-    threshold_percent = 0.8
+    threshold_percent = 0.50
   }
   threshold_rules {
-    threshold_percent = 1.0
+    threshold_percent = 0.75
+  }
+  threshold_rules {
+    threshold_percent = 1.00
   }
 }
 
