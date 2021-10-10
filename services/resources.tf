@@ -1,4 +1,42 @@
 
+resource "google_billing_budget" "this" {
+  billing_account = var.billing_account
+  display_name    = var.domain
+
+  all_updates_rule {
+    disable_default_iam_recipients = true
+    monitoring_notification_channels = [
+      google_monitoring_notification_channel.this.id,
+    ]
+  }
+  amount {
+    specified_amount {
+      currency_code = "USD"
+      units         = var.budget
+    }
+  }
+  budget_filter {
+    projects = ["projects/${var.project}"]
+  }
+  threshold_rules {
+    threshold_percent = 0.5
+  }
+  threshold_rules {
+    threshold_percent = 0.8
+  }
+  threshold_rules {
+    threshold_percent = 1.0
+  }
+}
+
+resource "google_monitoring_notification_channel" "this" {
+  display_name = var.owner
+  labels = {
+    email_address = var.owner
+  }
+  type = "email"
+}
+
 resource "google_project_iam_member" "build" {
   count  = length(local.build_roles)
   member = "serviceAccount:${var.project_number}@cloudbuild.gserviceaccount.com"

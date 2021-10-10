@@ -29,10 +29,24 @@ locals {
     "containerregistry",
     "run",
     "sourcerepo",
-    "cloudbuild"
+    "cloudbuild",
+    "billingbudgets",
+    "cloudresourcemanager",
+    "iam"
   ]
 
   timeout = "60m"
+}
+
+variable "billing_account" {
+  description = "billing account id"
+  type        = string
+}
+
+variable "budget" {
+  default     = "100"
+  description = "budget in usd"
+  type        = string
 }
 
 variable "domain" {
@@ -50,6 +64,12 @@ variable "location_region" {
     condition     = contains(["US-CENTRAL1", "US-EAST1", "US-EAST4", "US-WEST1", "US-WEST2", "US-WEST3", "US-WEST4"], var.location_region)
     error_message = "Variable location_region is invalid."
   }
+}
+
+variable "owner" {
+  default     = "justin.wheeler@wheelerswebsites.com"
+  description = "owner email address"
+  type        = string
 }
 
 variable "project" {

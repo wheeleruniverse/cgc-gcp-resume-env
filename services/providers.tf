@@ -1,7 +1,9 @@
 
 provider "google" {
-  project = var.project
-  region  = lower(var.location_region)
+  billing_project       = var.project
+  project               = var.project
+  region                = lower(var.location_region)
+  user_project_override = true
 }
 
 terraform {
