@@ -98,10 +98,10 @@ The infrastructure should be deployed in two stages, starting with the `core` mo
 │   ├── resources.tf          # Declares core resources (APIs, IAM, etc.)
 │   └── variables.tf          # Input variables for the core module
 └── services/                 # Terraform module for application services
-├── outputs.tf                # Outputs from the services module (e.g., URLs)
-├── providers.tf              # Provider configuration for this module
-├── resources.tf              # Declares service resources (Cloud Run, GCS, LB)
-└── variables.tf              # Input variables for the services module
+    ├── outputs.tf            # Outputs from the services module (e.g., URLs)
+    ├── providers.tf          # Provider configuration for this module
+    ├── resources.tf          # Declares service resources (Cloud Run, GCS, LB)
+    └── variables.tf          # Input variables for the services module
 ```
 
 ## License
