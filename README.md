@@ -92,16 +92,16 @@ The infrastructure should be deployed in two stages, starting with the `core` mo
 
 ```
 .
-├── architecture/             \# Contains Draw.io diagrams and PNG exports
-├── core/                     \# Terraform module for foundational GCP resources
-│   ├── providers.tf          \# Defines the GCP provider configuration
-│   ├── resources.tf          \# Declares core resources (APIs, IAM, etc.)
-│   └── variables.tf          \# Input variables for the core module
-└── services/                 \# Terraform module for application services
-├── outputs.tf            \# Outputs from the services module (e.g., URLs)
-├── providers.tf          \# Provider configuration for this module
-├── resources.tf          \# Declares service resources (Cloud Run, GCS, LB)
-└── variables.tf          \# Input variables for the services module
+├── architecture/             # Contains Draw.io diagrams and PNG exports
+├── core/                     # Terraform module for foundational GCP resources
+│   ├── providers.tf          # Defines the GCP provider configuration
+│   ├── resources.tf          # Declares core resources (APIs, IAM, etc.)
+│   └── variables.tf          # Input variables for the core module
+└── services/                 # Terraform module for application services
+├── outputs.tf                # Outputs from the services module (e.g., URLs)
+├── providers.tf              # Provider configuration for this module
+├── resources.tf              # Declares service resources (Cloud Run, GCS, LB)
+└── variables.tf              # Input variables for the services module
 ```
 
 ## License
